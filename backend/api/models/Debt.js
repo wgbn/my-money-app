@@ -11,7 +11,7 @@ module.exports = {
         name: { type: 'string', required: true },
         value: { type: 'float', required: true, min: 0 },
         status: { type: 'string', uppercase: true, enum: ['PAGO', 'PENDENTE', 'AGENDADO'] },
-        billing: { model: 'billingcycle' }
+        //billing: { model: 'billingcycle' }
     }
 };
 

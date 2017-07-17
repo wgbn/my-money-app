@@ -20,11 +20,28 @@ module.exports = {
 
     summary(req, res) {
 
+        const sum = (acc, val) => acc + val
+
+        BillingCycle.find({}).exec((err, billings) => {
+            if (err) return res.negotiate(err)
+            else {
+                let credit = 0;
+                let debt = 0;
+                billings.forEach( b => credit += b.credits.map(c => +c.value || 0).reduce(sum) )
+                billings.forEach( b => debt += b.debts.map(d => +d.value || 0).reduce(sum) )
+                res.json({ credit, debt })
+            }
+        } )
+
+    },
+
+    summary2(req, res) {
+
         async.parallel({
             credit: getCredit,
             debt: getDebt,
         }, (err, results) => {
-            if (err) return res.negotiate(err);
+            if (err) return res.negotiate(err)
             res.json({
                 credit: results.credit,
                 debt: results.debt,

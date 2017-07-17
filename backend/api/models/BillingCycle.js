@@ -14,16 +14,16 @@ module.exports = {
         name: { type: 'string', required: true },
         month: { type: 'string', required: true, min: 1, max: 12 },
         year: { type: 'int', required: true, min: 1970, max: 2100 },
-        /*credits: { type: 'array' },
-        debts: { type: 'array' }*/
-        credits: {
+        credits: { type: 'array' },
+        debts: { type: 'array' }
+        /*credits: {
             collection: 'credit',
             via: 'billing'
         },
         debts: {
             collection: 'debt',
             via: 'billing'
-        }
+        }*/
     }
 };
 
