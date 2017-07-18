@@ -1,6 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {decorateRedux} from "../annotations"
 import { arrayInsert, arrayRemove } from 'redux-form'
 
 import Grid from '../common/layout/grid'
@@ -8,7 +7,9 @@ import Edit from '../common/form/input'
 import If from '../common/operator/if'
 import { Field } from 'redux-form'
 
-class ItemsList extends React.Component {
+export default decorateRedux({
+    actions: { arrayInsert, arrayRemove }
+}, class ItemsList extends React.Component {
 
     constructor(props) {
         super(props)
@@ -74,24 +75,19 @@ class ItemsList extends React.Component {
 
                 <table className="table">
                     <thead>
-                        <tr>
-                            <td>Nome</td>
-                            <td>Valor</td>
-                            <If test={this.props.showStatus}><td>Status</td></If>
-                            <td className="table-actions">Ações</td>
-                        </tr>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Valor</td>
+                        <If test={this.props.showStatus}><td>Status</td></If>
+                        <td className="table-actions">Ações</td>
+                    </tr>
                     </thead>
                     <tbody>
-                        {this.renderRows()}
+                    {this.renderRows()}
                     </tbody>
                 </table>
             </Grid>
         )
     }
 
-}
-
-//const mapStateToProps = state => ({ [state] })
-const mapDispatchToProps = dispatch => bindActionCreators({ arrayInsert, arrayRemove }, dispatch)
-
-export default connect(null, mapDispatchToProps)(ItemsList)
+})

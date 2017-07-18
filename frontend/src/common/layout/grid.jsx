@@ -1,8 +1,6 @@
 import React from 'react'
-//import { connect } from 'react-redux'
-//import { bindActionCreators } from 'redux'
 
-class Grid extends React.Component {
+export default class Grid extends React.Component {
 
     toCssClasses(numeros) {
         const cols = numeros ? numeros.split(' ') : []
@@ -26,9 +24,3 @@ class Grid extends React.Component {
     }
 
 }
-
-//const mapStateToProps = state => ({ [state] })
-//const mapDispatchToProps = dispatch => bindActionCreators({ [actions] }, dispatch)
-
-//export default connect(mapStateToProps, mapDispatchToProps)(Grid)
-export default Grid

@@ -1,9 +1,12 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {redux} from "../../annotations"
 
 import If from '../operator/if'
 
-class TabContent extends React.Component {
+@redux({
+    states: state => ({ tab: state.tab })
+})
+export default class TabContent extends React.Component {
 
     constructor(props) {
         super(props)
@@ -26,6 +29,3 @@ class TabContent extends React.Component {
     }
 
 }
-
-const mapStateToProps = state => ({ tab: state.tab })
-export default connect(mapStateToProps)(TabContent)

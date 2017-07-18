@@ -7,6 +7,7 @@ export default props => (
     <ul className="sidebar-menu">
         <MenuItem path="/" icon="dashboard" label="Dashboard"/>
         <MenuItem path="movies" icon="film" label="Filmes"/>
+        <MenuItem path="decorators" icon="film" label="Decoretors"/>
 
         <MenuTree label="Cadastro" icon="edit">
             <MenuItem path="billingCycle" icon="usd" label="Ciclo de Pagamentos"/>

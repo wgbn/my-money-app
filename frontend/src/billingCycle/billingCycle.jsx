@@ -1,6 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {redux} from "../annotations"
 
 import { init, createBilling, updateBilling, removeBilling } from './billingActions'
 
@@ -15,7 +14,10 @@ import TabContent from '../common/tab/tabContent'
 import BillingCycleList from './billingCycleList'
 import BillingCycleForm from './billingForm'
 
-class BillingCycle extends React.Component {
+@redux({
+    actions: { init, createBilling, updateBilling, removeBilling }
+})
+export default class BillingCycle extends React.Component {
 
     constructor(props) {
         super(props)
@@ -63,13 +65,3 @@ class BillingCycle extends React.Component {
     }
 
 }
-
-//const mapStateToProps = state => ({ [state] })
-const mapDispatchToProps = dispatch => bindActionCreators({
-    init,
-    createBilling,
-    updateBilling,
-    removeBilling
-}, dispatch)
-
-export default connect(null, mapDispatchToProps)(BillingCycle)

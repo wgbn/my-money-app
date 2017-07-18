@@ -1,11 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {redux} from "../../annotations"
 
 import { selectTab } from './tabActions'
 import If from '../operator/if'
 
-class TabHeader extends React.Component {
+@redux({
+    states: state => ({ tab: state.tab }),
+    actions: { selectTab }
+})
+export default class TabHeader extends React.Component {
 
     constructor(props) {
         super(props)
@@ -33,8 +36,3 @@ class TabHeader extends React.Component {
     }
 
 }
-
-const mapStateToProps = state => ({ tab: state.tab })
-const mapDispatchToProps = dispatch => bindActionCreators({ selectTab }, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(TabHeader)

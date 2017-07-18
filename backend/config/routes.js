@@ -49,4 +49,7 @@ module.exports.routes = {
     "GET /billingcycle/count": {controller: "BillingCycleController", action: "count"},
     "GET /billingcycle/summary": {controller: "BillingCycleController", action: "summary"},
     "GET /movies": {controller: "MovieController", action: "latest"},
+    "POST /signup": {controller: "UserController", action: "signup"},
+    "POST /login": {controller: "UserController", action: "login"},
+    "POST /validatetoken": {controller: "UserController", action: "validateToken"},
 };

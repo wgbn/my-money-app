@@ -1,6 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {redux} from "../annotations"
 
 import { getSummary } from './dashboardActions'
 
@@ -9,7 +8,15 @@ import Content from '../common/template/content'
 import ValueBox from '../common/widget/valueBox'
 import Row from '../common/layout/row'
 
-class Dashboard extends React.Component {
+/**
+ * Usando o decoratorRedux() para encapsular o componente,
+ * passamos somente os states e as actions a serem mapeadas.
+ */
+@redux({
+    states: state => ({ summary: state.dashboard.summary }),
+    actions: { getSummary }
+})
+export default class Dashboard extends React.Component {
 
     constructor(props) {
         super(props)
@@ -38,8 +45,3 @@ class Dashboard extends React.Component {
     }
 
 }
-
-const mapStateToProps = state => ({ summary: state.dashboard.summary })
-const mapDispatchToProps = dispatch => bindActionCreators({ getSummary }, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

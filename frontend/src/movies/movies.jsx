@@ -1,13 +1,15 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {redux} from "../annotations"
 
 import { getMovies } from './moviesActions'
 import MovieItem from './movieItem'
-import If from '../common/operator/if'
 import Row from '../common/layout/row'
 
-class Movies extends React.Component {
+@redux({
+    states: state => ({ movies: state.netflix.movies }),
+    actions: { getMovies }
+})
+export default class Movies extends React.Component {
 
     constructor(props) {
         super(props)
@@ -35,8 +37,3 @@ class Movies extends React.Component {
     }
 
 }
-
-const mapStateToProps = state => ({ movies: state.netflix.movies })
-const mapDispatchToProps = dispatch => bindActionCreators({ getMovies }, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(Movies)
